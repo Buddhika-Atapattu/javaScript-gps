@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div id="mydiv"></div>
+    <script>
+        $(document).ready(()=>{
+            function getLocation(){
+                let navigator = navigator.getLocation;
+
+                if(navigator == true){
+                    navigator.getCurrentPosition(()=>{
+                        $("#mydiv").html('<h1>Latitude: '+ position.coords.latitude +' <br> Longitude: '+ position.coords.longitude +'</h1>');
+                    });
+                }
+                else{
+                    $("#mydiv").text("Geolocation is not supported by this browser.");
+                }
+            }
+
+            function showError(error) {
+                switch(error.code) {
+                    case error.PERMISSION_DENIED:
+                    x.innerHTML = "User denied the request for Geolocation."
+                    break;
+                    case error.POSITION_UNAVAILABLE:
+                    x.innerHTML = "Location information is unavailable."
+                    break;
+                    case error.TIMEOUT:
+                    x.innerHTML = "The request to get user location timed out."
+                    break;
+                    case error.UNKNOWN_ERROR:
+                    x.innerHTML = "An unknown error occurred."
+                    break;
+                }
+            }
+
+            showError(error);
+        })
+    </script>
+</body>
+</html>
